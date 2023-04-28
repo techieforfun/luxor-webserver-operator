@@ -1,0 +1,5 @@
+---
+# tasks file for WebServer role
+
+- include_tasks: create_deployment.yml
+- include_tasks: create_service.yml

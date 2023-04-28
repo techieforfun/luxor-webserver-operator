@@ -1,0 +1,28 @@
+---
+# tasks file for WebServer
+- name: start webserver & its service
+  kubernetes.core.k8s:
+    definition:
+      kind: Deployment
+      apiVersion: apps/v1
+      metadata:
+        name: "{{ ansible_operator_meta.name }}-webserver"
+        namespace: "{{ ansible_operator_meta.namespace }}"
+      spec:
+        replicas: "{{size}}"
+        selector:
+          matchLabels:
+            app: webserver
+        template:
+          metadata:
+            labels:
+              app: webserver
+          spec:
+            containers:
+              - name: webserver
+                image: "docker.io/techieforfun/webserver-app:0.1.0"
+                ports:
+                  - containerPort: 8080
+                env:
+                  - name: TARGET_ENDPOINTS
+                    value: "{{target_endpoints}}"

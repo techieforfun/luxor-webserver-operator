@@ -1,0 +1,13 @@
+apiVersion: ws.techiefor.fun/v1alpha1
+kind: WebServer
+metadata:
+  labels:
+    app.kubernetes.io/name: webserver
+    app.kubernetes.io/instance: webserver-app
+    app.kubernetes.io/part-of: webserver-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: webserver-operator
+  name: webserver-app
+spec:
+  size: 3
+  target_endpoints: "http://webserver-app-webserver-service:8080/ping"

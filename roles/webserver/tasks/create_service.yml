@@ -1,0 +1,20 @@
+---
+# Service definition
+- name: create service for webserver
+  k8s:
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "{{ ansible_operator_meta.name }}-webserver-service"
+        namespace: "{{ ansible_operator_meta.namespace }}"
+        labels:
+          app: webserver
+      spec:
+        selector:
+          app: webserver
+        ports:
+          - name: http
+            port: 8080
+            targetPort: 8080
+        type: ClusterIP

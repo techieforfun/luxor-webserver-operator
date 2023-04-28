@@ -1,0 +1,5 @@
+---
+# defaults file for WebServer
+size: 1
+# Service Name: webserver-app-webserver-service
+target_endoints: http://webserver-app-webserver-service:8080/ping
